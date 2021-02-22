@@ -32,7 +32,6 @@ try:
         text1 = str(cam.get_imgdataformat())
         text2 = str(cam.get_shutter_type())
         text3 = "resolution: {}x{}".format(cam.get_width(), cam.get_height())
-        text4 = "exposure params: "
         cv2.putText(
             data, text, (20,20), font, 1, (255, 255, 255), 1
             )
