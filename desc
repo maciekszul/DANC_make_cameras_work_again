@@ -1,0 +1,36 @@
+https://www.ximea.com/support/wiki/apis/Linux_USB30_Support
+
+1. download the software package
+wget https://www.ximea.com/downloads/recent/XIMEA_Linux_SP.tgz
+tar xzf XIMEA_Linux_SP.tgz
+cd package
+./install
+
+2. check if the user is in the plugdev group
+id|grep plugdev
+
+3. if empty
+sudo gpasswd -a $USER plugdev
+
+4. Then:
+A) unplug the camera, log-out or reboot
+B) plug the camera back
+5. command line diagnostic tool
+/opt/XIMEA/bin/xiCOP
+
+A) to change too low Kernel setting usbcore.usbfs_memory_mb
+sudo tee /sys/module/usbcore/parameters/usbfs_memory_mb >/dev/null <<<0
+
+B) Update firmware on the first camera:
+/opt/XIMEA/bin/xiCOP -fwupdate
+
+C) Update firmware on the specific camera:
+/opt/XIMEA/bin/xiCOP -fwupdate <serial number>
+
+D) Save diagnostics report to file xicop_report.xml in the current directory:
+/opt/XIMEA/bin/xiCOP -save_diag
+
+E) manufacturers recording tool (good for testing the settings, a bit clunky)
+/opt/XIMEA/bin/xiCamTool
+
+F) possibility to use normal usb3 vision protocol to be switched in xiCOP
