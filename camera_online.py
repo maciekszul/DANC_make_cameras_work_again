@@ -1,12 +1,12 @@
 import numpy as np
 from ximea import xiapi
-from cv2 import cv2
+import cv2
 import time
 
 cam = xiapi.Camera()
 
-cam.open_device_by_SN("32052251") # init with serial number useful when many
-
+cam.open_device_by_SN("06955451") # init with serial number useful when many
+# cam.open_device_by_SN("32052251")
 resolution = (1280, 1024) # open cv indexing starts at top left of the image
 cam.set_exposure(50000)
 cam.set_exp_priority(1)

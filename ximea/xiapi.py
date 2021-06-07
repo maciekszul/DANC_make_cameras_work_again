@@ -3407,6 +3407,24 @@ class Camera(object):
         '''
         self.set_param('defccMTX', defccMTX)
 
+    def is_ccMTXnorm(self):
+        '''
+        Normalize color correction matrixXI_PRM_CC_MATRIX_NORM
+        '''
+        return self.get_param('ccMTXnorm')
+
+    def enable_ccMTXnorm(self):
+        '''
+        Normalize color correction matrixXI_PRM_CC_MATRIX_NORM
+        '''
+        self.set_param('ccMTXnorm', True)
+
+    def disable_ccMTXnorm(self):
+        '''
+        Normalize color correction matrixXI_PRM_CC_MATRIX_NORM
+        '''
+        self.set_param('ccMTXnorm', False)
+
 #-------------------------------------------------------------------------------------------------------------------
 # ---- Parameter Group: Device IO
 #-------------------------------------------------------------------------------------------------------------------
@@ -5157,6 +5175,78 @@ class Camera(object):
         '''
         self.set_param('device_reset', device_reset)
 
+    def is_concat_img_mode(self):
+        '''
+        Enable/disable the ConcatenatedImages featureXI_PRM_CONCAT_IMG_MODE
+        '''
+        return self.get_param('concat_img_mode')
+
+    def enable_concat_img_mode(self):
+        '''
+        Enable/disable the ConcatenatedImages featureXI_PRM_CONCAT_IMG_MODE
+        '''
+        self.set_param('concat_img_mode', True)
+
+    def disable_concat_img_mode(self):
+        '''
+        Enable/disable the ConcatenatedImages featureXI_PRM_CONCAT_IMG_MODE
+        '''
+        self.set_param('concat_img_mode', False)
+
+    def get_concat_img_count(self):
+        '''
+        Number of images concatenated in one payloadXI_PRM_CONCAT_IMG_COUNT
+        '''
+        return self.get_param('concat_img_count')
+
+    def get_concat_img_count_maximum(self):
+        '''
+        Number of images concatenated in one payloadXI_PRM_CONCAT_IMG_COUNT
+        '''
+        return self.get_param('concat_img_count:max')
+
+    def get_concat_img_count_minimum(self):
+        '''
+        Number of images concatenated in one payloadXI_PRM_CONCAT_IMG_COUNT
+        '''
+        return self.get_param('concat_img_count:min')
+
+    def get_concat_img_count_increment(self):
+        '''
+        Number of images concatenated in one payloadXI_PRM_CONCAT_IMG_COUNT
+        '''
+        return self.get_param('concat_img_count:inc')
+
+    def set_concat_img_count(self, concat_img_count):
+        '''
+        Number of images concatenated in one payloadXI_PRM_CONCAT_IMG_COUNT
+        '''
+        self.set_param('concat_img_count', concat_img_count)
+
+    def get_concat_img_transport_img_offset(self):
+        '''
+        Offset between headers and images in bytes on transportXI_PRM_CONCAT_IMG_TRANSPORT_IMG_OFFSET
+        '''
+        return self.get_param('concat_img_transport_img_offset')
+
+    def get_concat_img_transport_img_offset_maximum(self):
+        '''
+        Offset between headers and images in bytes on transportXI_PRM_CONCAT_IMG_TRANSPORT_IMG_OFFSET
+        '''
+        return self.get_param('concat_img_transport_img_offset:max')
+
+    def get_concat_img_transport_img_offset_minimum(self):
+        '''
+        Offset between headers and images in bytes on transportXI_PRM_CONCAT_IMG_TRANSPORT_IMG_OFFSET
+        '''
+        return self.get_param('concat_img_transport_img_offset:min')
+
+    def get_concat_img_transport_img_offset_increment(self):
+        '''
+        Offset between headers and images in bytes on transportXI_PRM_CONCAT_IMG_TRANSPORT_IMG_OFFSET
+        '''
+        return self.get_param('concat_img_transport_img_offset:inc')
+
 #-------------------------------------------------------------------------------------------------------------------
 # ---- Parameter Group: Sensor Defects Correction
 #-------------------------------------------------------------------------------------------------------------------
@@ -5644,6 +5734,186 @@ class Camera(object):
         Defines image area of sensor as output.XI_PRM_IMAGE_AREA
         '''
         self.set_param('image_area', image_area)
+
+    def get_dual_adc_mode(self):
+        '''
+        Sets DualADC ModeXI_PRM_DUAL_ADC_MODE
+        '''
+        return self.get_param('dual_adc_mode')
+
+    def get_dual_adc_mode_maximum(self):
+        '''
+        Sets DualADC ModeXI_PRM_DUAL_ADC_MODE
+        '''
+        return self.get_param('dual_adc_mode:max')
+
+    def get_dual_adc_mode_minimum(self):
+        '''
+        Sets DualADC ModeXI_PRM_DUAL_ADC_MODE
+        '''
+        return self.get_param('dual_adc_mode:min')
+
+    def get_dual_adc_mode_increment(self):
+        '''
+        Sets DualADC ModeXI_PRM_DUAL_ADC_MODE
+        '''
+        return self.get_param('dual_adc_mode:inc')
+
+    def set_dual_adc_mode(self, dual_adc_mode):
+        '''
+        Sets DualADC ModeXI_PRM_DUAL_ADC_MODE
+        '''
+        self.set_param('dual_adc_mode', dual_adc_mode)
+
+    def get_dual_adc_gain_ratio(self):
+        '''
+        Sets DualADC Gain RatioXI_PRM_DUAL_ADC_GAIN_RATIO
+        '''
+        return self.get_param('dual_adc_gain_ratio')
+
+    def get_dual_adc_gain_ratio_maximum(self):
+        '''
+        Sets DualADC Gain RatioXI_PRM_DUAL_ADC_GAIN_RATIO
+        '''
+        return self.get_param('dual_adc_gain_ratio:max')
+
+    def get_dual_adc_gain_ratio_minimum(self):
+        '''
+        Sets DualADC Gain RatioXI_PRM_DUAL_ADC_GAIN_RATIO
+        '''
+        return self.get_param('dual_adc_gain_ratio:min')
+
+    def get_dual_adc_gain_ratio_increment(self):
+        '''
+        Sets DualADC Gain RatioXI_PRM_DUAL_ADC_GAIN_RATIO
+        '''
+        return self.get_param('dual_adc_gain_ratio:inc')
+
+    def set_dual_adc_gain_ratio(self, dual_adc_gain_ratio):
+        '''
+        Sets DualADC Gain RatioXI_PRM_DUAL_ADC_GAIN_RATIO
+        '''
+        self.set_param('dual_adc_gain_ratio', dual_adc_gain_ratio)
+
+    def get_dual_adc_threshold(self):
+        '''
+        Sets DualADC Threshold valueXI_PRM_DUAL_ADC_THRESHOLD
+        '''
+        return self.get_param('dual_adc_threshold')
+
+    def get_dual_adc_threshold_maximum(self):
+        '''
+        Sets DualADC Threshold valueXI_PRM_DUAL_ADC_THRESHOLD
+        '''
+        return self.get_param('dual_adc_threshold:max')
+
+    def get_dual_adc_threshold_minimum(self):
+        '''
+        Sets DualADC Threshold valueXI_PRM_DUAL_ADC_THRESHOLD
+        '''
+        return self.get_param('dual_adc_threshold:min')
+
+    def get_dual_adc_threshold_increment(self):
+        '''
+        Sets DualADC Threshold valueXI_PRM_DUAL_ADC_THRESHOLD
+        '''
+        return self.get_param('dual_adc_threshold:inc')
+
+    def set_dual_adc_threshold(self, dual_adc_threshold):
+        '''
+        Sets DualADC Threshold valueXI_PRM_DUAL_ADC_THRESHOLD
+        '''
+        self.set_param('dual_adc_threshold', dual_adc_threshold)
+
+    def get_compression_region_selector(self):
+        '''
+        Sets Compression Region SelectorXI_PRM_COMPRESSION_REGION_SELECTOR
+        '''
+        return self.get_param('compression_region_selector')
+
+    def get_compression_region_selector_maximum(self):
+        '''
+        Sets Compression Region SelectorXI_PRM_COMPRESSION_REGION_SELECTOR
+        '''
+        return self.get_param('compression_region_selector:max')
+
+    def get_compression_region_selector_minimum(self):
+        '''
+        Sets Compression Region SelectorXI_PRM_COMPRESSION_REGION_SELECTOR
+        '''
+        return self.get_param('compression_region_selector:min')
+
+    def get_compression_region_selector_increment(self):
+        '''
+        Sets Compression Region SelectorXI_PRM_COMPRESSION_REGION_SELECTOR
+        '''
+        return self.get_param('compression_region_selector:inc')
+
+    def set_compression_region_selector(self, compression_region_selector):
+        '''
+        Sets Compression Region SelectorXI_PRM_COMPRESSION_REGION_SELECTOR
+        '''
+        self.set_param('compression_region_selector', compression_region_selector)
+
+    def get_compression_region_start(self):
+        '''
+        Sets Compression Region StartXI_PRM_COMPRESSION_REGION_START
+        '''
+        return self.get_param('compression_region_start')
+
+    def get_compression_region_start_maximum(self):
+        '''
+        Sets Compression Region StartXI_PRM_COMPRESSION_REGION_START
+        '''
+        return self.get_param('compression_region_start:max')
+
+    def get_compression_region_start_minimum(self):
+        '''
+        Sets Compression Region StartXI_PRM_COMPRESSION_REGION_START
+        '''
+        return self.get_param('compression_region_start:min')
+
+    def get_compression_region_start_increment(self):
+        '''
+        Sets Compression Region StartXI_PRM_COMPRESSION_REGION_START
+        '''
+        return self.get_param('compression_region_start:inc')
+
+    def set_compression_region_start(self, compression_region_start):
+        '''
+        Sets Compression Region StartXI_PRM_COMPRESSION_REGION_START
+        '''
+        self.set_param('compression_region_start', compression_region_start)
+
+    def get_compression_region_gain(self):
+        '''
+        Sets Compression Region GainXI_PRM_COMPRESSION_REGION_GAIN
+        '''
+        return self.get_param('compression_region_gain')
+
+    def get_compression_region_gain_maximum(self):
+        '''
+        Sets Compression Region GainXI_PRM_COMPRESSION_REGION_GAIN
+        '''
+        return self.get_param('compression_region_gain:max')
+
+    def get_compression_region_gain_minimum(self):
+        '''
+        Sets Compression Region GainXI_PRM_COMPRESSION_REGION_GAIN
+        '''
+        return self.get_param('compression_region_gain:min')
+
+    def get_compression_region_gain_increment(self):
+        '''
+        Sets Compression Region GainXI_PRM_COMPRESSION_REGION_GAIN
+        '''
+        return self.get_param('compression_region_gain:inc')
+
+    def set_compression_region_gain(self, compression_region_gain):
+        '''
+        Sets Compression Region GainXI_PRM_COMPRESSION_REGION_GAIN
+        '''
+        self.set_param('compression_region_gain', compression_region_gain)
 
 #-------------------------------------------------------------------------------------------------------------------
 # ---- Parameter Group: Version info

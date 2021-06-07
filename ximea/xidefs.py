@@ -348,6 +348,7 @@ XI_GPO_MODE = {
     "XI_GPO_EXPOSURE_ACTIVE_FIRST_ROW_NEG": c_uint(15),    #Output is off while the first row exposure.
     "XI_GPO_EXPOSURE_ACTIVE_ALL_ROWS": c_uint(16),    #Output is on while all rows exposure together.
     "XI_GPO_EXPOSURE_ACTIVE_ALL_ROWS_NEG": c_uint(17),    #Output is off while all rows exposure together.
+    "XI_GPO_TXD": c_uint(18),    #Output is connected to TXD of UART module
     }
 
 #Enumerator for GPO port selection.
@@ -547,6 +548,7 @@ XI_TYPE_CORRECTION_SELECTOR = {
     "XI_CORR_TYPE_SENSOR_CHANNELS_TUNE": c_uint(5),    #Image channel/tap intensity correction
     "XI_CORR_TYPE_SENSOR_COLUMN_BLACK_OFFSET": c_uint(6),    #Select image black offset Correction for Columns
     "XI_CORR_TYPE_SENSOR_ROW_BLACK_OFFSET": c_uint(7),    #Select image black offset Correction for Rows
+    "XI_CORR_TYPE_SENSOR_DEFECTS_IN_CAMERA": c_uint(8),    #Custom defect list(specific cameras)
     }
 
 #Define image defect types
@@ -638,6 +640,7 @@ XI_SENSOR_FEATURE_SELECTOR = {
     "XI_SENSOR_FEATURE_TIMING_MODE": c_uint(4),    #Set Sensor timing mode
     "XI_SENSOR_FEATURE_PARALLEL_ADC": c_uint(5),    #Parallel ADC readout
     "XI_SENSOR_FEATURE_BLACK_LEVEL_OFFSET_RAW": c_uint(6),    #Sensor specific register raw black level offset
+    "XI_SENSOR_FEATURE_SHORT_INTERVAL_SHUTTER": c_uint(7),    #Short Interval Shutter - sensor specific feature
     }
 
 #Extended feature selector.
@@ -721,6 +724,7 @@ XI_SENSOR_OUTPUT_CHANNEL_COUNT = {
 XI_SENS_DEFFECTS_CORR_LIST_SELECTOR = { 
     "XI_SENS_DEFFECTS_CORR_LIST_SEL_FACTORY": c_uint(0),    #Factory defect correction list
     "XI_SENS_DEFFECTS_CORR_LIST_SEL_USER0": c_uint(1),    #User defect correction list
+    "XI_SENS_DEFFECTS_CORR_LIST_SEL_IN_CAMERA": c_uint(2),    #Device specific defect correction list
     }
 
 #Acquisition status Selector
@@ -796,6 +800,13 @@ XI_USER_SET_SELECTOR = {
     "XI_US_2_14_HDR_H": c_uint(27),    #14bit per channel, 2 samples,  HDR High Gain mode preset.
     "XI_US_2_12_CMS_A_L": c_uint(28),    #12bit per channel, 2 samples,  CMS(averaging) Low Gain mode preset.
     "XI_US_2_12_CMS_A_H": c_uint(29),    #12bit per channel, 2 samples,  CMS(averaging) High Gain mode preset.
+    }
+
+#Mode of DualADC feature
+XI_DUAL_ADC_MODE = { 
+    "XI_DUAL_ADC_MODE_OFF": c_uint(0),    #Disable DualADC feature
+    "XI_DUAL_ADC_MODE_COMBINED": c_uint(1),    #Set Combined mode
+    "XI_DUAL_ADC_MODE_NON_COMBINED": c_uint(2),    #Set NonCombined mode
     }
 
 
@@ -911,6 +922,7 @@ XI_PRM_CC_MATRIX_31 = "ccMTX31"    #Color Correction Matrix element [3][1]
 XI_PRM_CC_MATRIX_32 = "ccMTX32"    #Color Correction Matrix element [3][2]
 XI_PRM_CC_MATRIX_33 = "ccMTX33"    #Color Correction Matrix element [3][3]
 XI_PRM_DEFAULT_CC_MATRIX = "defccMTX"    #Set default Color Correction Matrix
+XI_PRM_CC_MATRIX_NORM = "ccMTXnorm"    #Normalize color correction matrix
 XI_PRM_TRG_SOURCE = "trigger_source"    #Defines source of trigger.
 XI_PRM_TRG_SOFTWARE = "trigger_software"    #Generates an internal trigger. XI_PRM_TRG_SOURCE must be set to TRG_SOFTWARE.
 XI_PRM_TRG_SELECTOR = "trigger_selector"    #Selects the type of trigger.
@@ -981,6 +993,9 @@ XI_PRM_ACQ_TRANSPORT_BUFFER_COMMIT = "acq_transport_buffer_commit"    #Total num
 XI_PRM_ACQ_TRANSPORT_DATA_COMMIT_TOTAL_SIZE = "acq_transport_data_commit_total_size"    #Total number of bytes to be commit in one time on transport (all transport buffers together). Increasing can enhance transport capacity. E.g. on USB
 XI_PRM_RECENT_FRAME = "recent_frame"    #GetImage returns most recent frame
 XI_PRM_DEVICE_RESET = "device_reset"    #Resets the camera to default state.
+XI_PRM_CONCAT_IMG_MODE = "concat_img_mode"    #Enable/disable the ConcatenatedImages feature
+XI_PRM_CONCAT_IMG_COUNT = "concat_img_count"    #Number of images concatenated in one payload
+XI_PRM_CONCAT_IMG_TRANSPORT_IMG_OFFSET = "concat_img_transport_img_offset"    #Offset between headers and images in bytes on transport
 XI_PRM_COLUMN_FPN_CORRECTION = "column_fpn_correction"    #Correction of column FPN
 XI_PRM_ROW_FPN_CORRECTION = "row_fpn_correction"    #Correction of row FPN
 XI_PRM_COLUMN_BLACK_OFFSET_CORRECTION = "column_black_offset_correction"    #Correction of column black offset
@@ -998,6 +1013,12 @@ XI_PRM_TRANS_DATA_BLACK_LEVEL_OVR = "trans_data_black_level_ovr"    #Overwrites 
 XI_PRM_TRANS_DATA_BLACK_LEVEL_OVR_EN = "trans_data_black_level_ovr_en"    #Enables/disables black level overwrite.
 XI_PRM_IMAGE_BLACK_LEVEL = "image_black_level"    #Last image black level counts (same as in XI_IMG). Setting can be used only for Offline Processing.
 XI_PRM_IMAGE_AREA = "image_area"    #Defines image area of sensor as output.
+XI_PRM_DUAL_ADC_MODE = "dual_adc_mode"    #Sets DualADC Mode
+XI_PRM_DUAL_ADC_GAIN_RATIO = "dual_adc_gain_ratio"    #Sets DualADC Gain Ratio
+XI_PRM_DUAL_ADC_THRESHOLD = "dual_adc_threshold"    #Sets DualADC Threshold value
+XI_PRM_COMPRESSION_REGION_SELECTOR = "compression_region_selector"    #Sets Compression Region Selector
+XI_PRM_COMPRESSION_REGION_START = "compression_region_start"    #Sets Compression Region Start
+XI_PRM_COMPRESSION_REGION_GAIN = "compression_region_gain"    #Sets Compression Region Gain
 XI_PRM_VERSION_SELECTOR = "version_selector"    #Selects module/unit, which version we get.
 XI_PRM_VERSION = "version"    #Returns version of selected module/unit(XI_PRM_VERSION_SELECTOR).
 XI_PRM_API_VERSION = "api_version"    #Returns version of API.
@@ -1157,6 +1178,7 @@ VAL_TYPE = {
     "ccMTX32": "xiTypeFloat",    #Color Correction Matrix element [3][2]
     "ccMTX33": "xiTypeFloat",    #Color Correction Matrix element [3][3]
     "defccMTX": "xiTypeCommand",    #Set default Color Correction Matrix
+    "ccMTXnorm": "xiTypeBoolean",    #Normalize color correction matrix
     "trigger_source": "xiTypeEnum",    #Defines source of trigger.
     "trigger_software": "xiTypeCommand",    #Generates an internal trigger. XI_PRM_TRG_SOURCE must be set to TRG_SOFTWARE.
     "trigger_selector": "xiTypeEnum",    #Selects the type of trigger.
@@ -1227,6 +1249,9 @@ VAL_TYPE = {
     "acq_transport_data_commit_total_size": "xiTypeInteger",    #Total number of bytes to be commit in one time on transport (all transport buffers together). Increasing can enhance transport capacity. E.g. on USB
     "recent_frame": "xiTypeBoolean",    #GetImage returns most recent frame
     "device_reset": "xiTypeCommand",    #Resets the camera to default state.
+    "concat_img_mode": "xiTypeBoolean",    #Enable/disable the ConcatenatedImages feature
+    "concat_img_count": "xiTypeInteger",    #Number of images concatenated in one payload
+    "concat_img_transport_img_offset": "xiTypeInteger",    #Offset between headers and images in bytes on transport
     "column_fpn_correction": "xiTypeEnum",    #Correction of column FPN
     "row_fpn_correction": "xiTypeEnum",    #Correction of row FPN
     "column_black_offset_correction": "xiTypeEnum",    #Correction of column black offset
@@ -1244,6 +1269,12 @@ VAL_TYPE = {
     "trans_data_black_level_ovr_en": "xiTypeBoolean",    #Enables/disables black level overwrite.
     "image_black_level": "xiTypeInteger",    #Last image black level counts (same as in XI_IMG). Setting can be used only for Offline Processing.
     "image_area": "xiTypeEnum",    #Defines image area of sensor as output.
+    "dual_adc_mode": "xiTypeEnum",    #Sets DualADC Mode
+    "dual_adc_gain_ratio": "xiTypeInteger",    #Sets DualADC Gain Ratio
+    "dual_adc_threshold": "xiTypeInteger",    #Sets DualADC Threshold value
+    "compression_region_selector": "xiTypeInteger",    #Sets Compression Region Selector
+    "compression_region_start": "xiTypeInteger",    #Sets Compression Region Start
+    "compression_region_gain": "xiTypeInteger",    #Sets Compression Region Gain
     "version_selector": "xiTypeEnum",    #Selects module/unit, which version we get.
     "version": "xiTypeString",    #Returns version of selected module/unit(XI_PRM_VERSION_SELECTOR).
     "api_version": "xiTypeString",    #Returns version of API.
@@ -1354,6 +1385,7 @@ ASSOC_ENUM = {
     "image_correction_selector": XI_IMAGE_CORRECTION_SELECTOR,    #Select image correction function
     "sensor_mode": XI_SENSOR_MODE,    #Current sensor mode. Allows to select sensor mode by one integer. Setting of this parameter affects: image dimensions and downsampling.
     "image_area": XI_IMAGE_AREA_SELECTOR,    #Defines image area of sensor as output.
+    "dual_adc_mode": XI_DUAL_ADC_MODE,    #Sets DualADC Mode
     "version_selector": XI_VERSION,    #Selects module/unit, which version we get.
     "debug_level": XI_DEBUG_LEVEL,    #Set debug level
     "proc_engine": XI_PROC_ENGINE,    #Set processing engine
