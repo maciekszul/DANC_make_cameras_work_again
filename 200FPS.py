@@ -3,11 +3,11 @@ import cv2
 
 
 cam1 = xiapi.Camera()
-cam1.open_device_by_SN("32052251")
+cam1.open_device_by_SN("39050251")
 
 framerate = 120.0
 shutter = int((1/framerate)*1e+6)-100
-gain = 5
+gain = 15
 
 # cam1.set_sensor_feature_value(1)
 cam1.set_exposure(shutter)
