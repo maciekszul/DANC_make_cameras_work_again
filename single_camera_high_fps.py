@@ -4,7 +4,7 @@ import time
 
 cam1 = xiapi.Camera()
 cam1.disable_auto_bandwidth_calculation()
-cam1.open_device_by_SN("39050251")
+cam1.open_device_by_SN("06955451")
 framerate = 200.0
 shutter = int((1/framerate)*1e+6)-1000
 gain = 15

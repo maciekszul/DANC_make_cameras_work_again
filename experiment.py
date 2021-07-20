@@ -4,7 +4,7 @@ from psychopy import monitors
 from psychopy import gui
 from psychopy import event
 from psychopy import parallel
-
+ 
 port = parallel.ParallelPort(address=0x0378)
 
 monitors_ = {
@@ -12,9 +12,9 @@ monitors_ = {
 }
 
 def trigger(send_bit):
-    parallel.setData(send_bit)
+    port.setData(send_bit)
     core.wait(0.004)
-    parallel.setData(0)
+    port.setData(0)
 
 which_monitor = "office"
 mon = monitors.Monitor("default")

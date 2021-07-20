@@ -10,9 +10,11 @@ parameters =  aruco.DetectorParameters_create()
 
 cam = xiapi.Camera()
 
-cam.open_device_by_SN("32052251")
+cam.open_device_by_SN("06955451")
 
 framerate = 30.0
+
+
 
 cam.set_exposure(int((1/framerate)*1e+6)-100)
 cam.set_gain(5)
@@ -61,7 +63,7 @@ except KeyboardInterrupt:
 
 except:
     cam.stop_acquisition()
-    cam.close_device()
+    
 
 try:
     cam.stop_acquisition()
