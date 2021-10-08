@@ -1,13 +1,25 @@
 import numpy as np
 import cv2
 import time
+import sys
+import os.path as op
 
-raw = np.load("frames_999_duration_5.npy")
+
+try:
+    path = str(sys.argv[1])
+except:
+    print("incorrect path")
+    sys.exit()
+
+filename = path.split("/")[-1].split(".")[0]
+
+
+raw = np.load(path, allow_pickle=True)
 f_size = (1280, 1024)
 fourcc = cv2.VideoWriter_fourcc(*'MJPG')
 
 vid = cv2.VideoWriter(
-    "frames_999_duration_5.avi",
+    "{}.avi".format(filename),
     fourcc,
     float(200),
     f_size
